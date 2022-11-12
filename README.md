@@ -8,6 +8,8 @@ Remove the friction to create migrations for your [Platformatic DB](https://oss.
 - Generate Platformatic compatible [migrations](https://oss.platformatic.dev/docs/reference/db/migrations) when changes are made to your Prisma schema
 - Migrations will be [run](https://oss.platformatic.dev/docs/reference/db/migrations#how-to-run-migrations) by Platformatic
 
+View the [example project](./example) to see it in action.
+
 ## Installation
 
 Install `platformatic-prisma` and `prisma`:
@@ -20,6 +22,8 @@ Create a `./prisma/schema.prisma` file with the following contents:
 
 ```prisma
 datasource db {
+  // A provider supported by Platformatic
+  // https://oss.platformatic.dev/docs/reference/db/introduction#supported-databases
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
@@ -34,6 +38,12 @@ model Version {
   @@map("versions")
   @@ignore
 }
+```
+
+Create an [`.env` file](https://www.prisma.io/docs/guides/development-environment/environment-variables#using-env-files) containing the database connection URL to connect to your database:
+
+```
+DATABASE_URL="postgresql://postgres:@localhost:5432/platformatic-prisma?schema=public"
 ```
 
 ## Generating Migrations
