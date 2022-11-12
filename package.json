@@ -1,0 +1,34 @@
+{
+  "name": "platformatic-prisma",
+  "version": "1.0.0",
+  "description": "Generate migrations for your Platformatic DB using a Prisma schema",
+  "bin": "index.mjs",
+  "scripts": {},
+  "keywords": [
+    "platformatic",
+    "prisma"
+  ],
+  "author": {
+    "name": "Kishan Gajera",
+    "url": "http://github.com/kgajera"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kgajera/platformatic-prisma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kgajera/platformatic-prisma/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.mjs"
+  ],
+  "dependencies": {
+    "@platformatic/db": "^0.6.1",
+    "chalk": "^5.1.2",
+    "execa": "^6.1.0"
+  },
+  "peerDependencies": {
+    "prisma": ">=3.0.0"
+  }
+}

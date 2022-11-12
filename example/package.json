@@ -1,0 +1,16 @@
+{
+  "name": "platformatic-prisma-example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "platformatic db start",
+    "migrate": "platformatic-prisma"
+  },
+  "dependencies": {
+    "platformatic": "^0.6.1"
+  },
+  "devDependencies": {
+    "platformatic-prisma": "file:..",
+    "prisma": "^4.6.1"
+  }
+}
