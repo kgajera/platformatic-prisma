@@ -53,4 +53,5 @@ try {
   }
 } catch (error) {
   console.log(chalk.red(error.message));
+  process.exitCode = 1;
 }
