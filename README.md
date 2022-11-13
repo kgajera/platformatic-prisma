@@ -10,7 +10,7 @@ Remove the friction to create migrations for your [Platformatic DB](https://oss.
 
 View the [example project](./example) to see it in action.
 
-## Installation
+## Getting Started
 
 Install `platformatic-prisma` and `prisma`:
 
@@ -22,7 +22,7 @@ Create a `./prisma/schema.prisma` file with the following contents:
 
 ```prisma
 datasource db {
-  // A provider supported by Platformatic
+  // Any provider supported by Platformatic
   // https://oss.platformatic.dev/docs/reference/db/introduction#supported-databases
   provider = "postgresql"
   url      = env("DATABASE_URL")
