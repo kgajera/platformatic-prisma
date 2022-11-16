@@ -4,6 +4,7 @@
 
 1. Set the `DATABASE_URL` environment variable in [`.env`](/example/.env) with the connection string to connect to your database. The [`prisma/schema.prisma`](/example/prisma/schema.prisma#L5) file is configured to connect to a Postgres database.
 1. Run `npm install` to install dependencies.
+1. Run `npx platformatic db migrate` to let Platformatic DB initialize the database with it's migrations table.
 
 ## Starting the API Server
 
