@@ -5,7 +5,7 @@
 Remove the friction to create migrations for your [Platformatic DB](https://oss.platformatic.dev/docs/reference/db/introduction) by generating them using a [Prisma schema](https://www.prisma.io/docs/concepts/components/prisma-schema).
 
 - Use Prisma schema to manage your data models
-- Generate Platformatic DB compatible [migrations](https://oss.platformatic.dev/docs/reference/db/migrations) when changes are made to your Prisma schema
+- Generate Platformatic DB compatible up and down [migrations](https://oss.platformatic.dev/docs/reference/db/migrations) when changes are made to your Prisma schema
 - Migrations will be [run](https://oss.platformatic.dev/docs/reference/db/migrations#how-to-run-migrations) by Platformatic DB
 
 View the [example project](./example) to see it in action.
@@ -51,6 +51,6 @@ DATABASE_URL="postgresql://postgres:@localhost:5432/platformatic-prisma?schema=p
 > **Note**
 > If you are just starting with a new Platformatic DB project, run `npx platformatic db migrate` before generating your first migration. This is needed to allow Platformatic DB to initialize the database with it's migrations table.
 
-When changes are made to your `schema.prisma` file, run `npx platformatic-prisma` to generate migrations. This will generate a migration file in the migrations directory that is specified in your Platformatic [configuration file](https://oss.platformatic.dev/docs/reference/db/configuration#configuration-file).
+When changes are made to your `schema.prisma` file, run `npx platformatic-prisma` to generate migrations. This will generate up and down migration files in the migrations directory that is specified in your Platformatic [configuration file](https://oss.platformatic.dev/docs/reference/db/configuration#configuration-file).
 
 To run migrations, refer to [Platformatic's documentation](https://oss.platformatic.dev/docs/reference/db/migrations).

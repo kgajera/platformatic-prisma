@@ -1,2 +1,4 @@
 -- AlterTable
-ALTER TABLE "User" ADD COLUMN     "name" TEXT;
+ALTER TABLE "User" DROP COLUMN "firstName",
+DROP COLUMN "lastName",
+ADD COLUMN     "name" TEXT NOT NULL;
