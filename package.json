@@ -24,7 +24,7 @@
     "index.mjs"
   ],
   "dependencies": {
-    "@platformatic/db": "^0.8.0",
+    "@platformatic/db": "^0.9.2",
     "chalk": "^5.1.2",
     "execa": "^6.1.0"
   },
