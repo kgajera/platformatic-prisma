@@ -54,3 +54,12 @@ DATABASE_URL="postgresql://postgres:@localhost:5432/platformatic-prisma?schema=p
 When changes are made to your `schema.prisma` file, run `npx platformatic-prisma` to generate migrations. This will generate up and down migration files in the migrations directory that is specified in your Platformatic [configuration file](https://oss.platformatic.dev/docs/reference/db/configuration#configuration-file).
 
 To run migrations, refer to [Platformatic's documentation](https://oss.platformatic.dev/docs/reference/db/migrations).
+
+### Options
+
+| Option          | Required | Description                                                       | Default                |
+| --------------- | -------- | ----------------------------------------------------------------- | ---------------------- |
+| `--description` | No       | Label to include in migration filename. Must not contain periods. |                        |
+| `--no-down`     | No       | Prevents generation of the down migration file.                   | `false`                |
+| `--no-up`       | No       | Prevents generation of the up migration file.                     | `false`                |
+| `--schema`      | No       | Specifies the path to the `schema.prisma` file.                   | `prisma/schema.prisma` |

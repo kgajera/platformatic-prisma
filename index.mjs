@@ -5,17 +5,30 @@ import chalk from "chalk";
 import { execaCommand } from "execa";
 import fs from "fs";
 import path from "path";
-
-const PRISMA_SCHEMA_PATH = path.resolve("prisma", "schema.prisma");
+import parser from "yargs-parser";
 
 try {
-  const args = process.argv.slice(2);
-  const description = args[0] ?? "";
+  const argv = parser(process.argv.slice(2), {
+    boolean: ["down", "up"],
+    default: {
+      description: "",
+      down: true,
+      schema: path.resolve("prisma", "schema.prisma"),
+      up: true,
+    },
+  });
 
-  // Creates migration script
-  const upMigration = await execaCommand(
-    `npx prisma migrate diff  --from-schema-datasource ${PRISMA_SCHEMA_PATH} --to-schema-datamodel ${PRISMA_SCHEMA_PATH} --script`
-  );
+  // Create migration scripts
+  const [upMigration, downMigration] = await Promise.all([
+    execaCommand(
+      `npx prisma migrate diff  --from-schema-datasource ${argv.schema} --to-schema-datamodel ${argv.schema} --script`
+    ),
+    argv.down
+      ? execaCommand(
+          `npx prisma migrate diff  --from-schema-datamodel ${argv.schema} --to-schema-datasource ${argv.schema} --script`
+        )
+      : Promise.resolve(null),
+  ]);
 
   if (upMigration.stdout.trim() === "-- This is an empty migration.") {
     console.log(chalk.green("No migrations are needed"));
@@ -24,26 +37,25 @@ try {
     const nextMigrationVersion = await getNextMigrationVersion(migrationsDir);
 
     const writeMigrationFile = async (content, action = "do") => {
-      const migrationFilename = getMigrationFilename(nextMigrationVersion, action, description);
+      const migrationFilename = getMigrationFilename(
+        nextMigrationVersion,
+        action,
+        argv.description
+      );
       const migrationPath = path.resolve(migrationsDir, migrationFilename);
       await fs.promises.writeFile(migrationPath, content);
-      return migrationPath;
-    }
-
-    // Save the "do" migration file
-    const migrationDoPath = await writeMigrationFile(upMigration.stdout);
-
-    // Creates "undo" migration script
-    const downMigration = await execaCommand(
-      `npx prisma migrate diff  --from-schema-datamodel ${PRISMA_SCHEMA_PATH} --to-schema-datasource ${PRISMA_SCHEMA_PATH} --script`
-    );
-
-    // Save the "undo" migration file
-    const migrationUndoPath = await writeMigrationFile(downMigration.stdout, "undo");
+      console.log(`\t${chalk.underline(migrationPath)}`);
+    };
 
     console.log(chalk.green("Generated migration files:"));
-    console.log(`\t${chalk.underline(migrationDoPath)}`);
-    console.log(`\t${chalk.underline(migrationUndoPath)}`);
+
+    // Save migration files
+    await Promise.all([
+      argv.up ? writeMigrationFile(upMigration.stdout) : Promise.resolve(null),
+      argv.down
+        ? writeMigrationFile(downMigration.stdout, "undo")
+        : Promise.resolve(null),
+    ]);
   }
 } catch (error) {
   console.log(chalk.red(error.message));
@@ -54,7 +66,9 @@ try {
  * Returns `migrations.dir` value from the Platformatic DB configuration file
  */
 async function getMigrationsDir() {
-  const { configManager: { current } } = await loadConfig({}, "");
+  const {
+    configManager: { current },
+  } = await loadConfig({}, "");
   const migrationsDir = current.migrations?.dir;
 
   if (!fs.existsSync(migrationsDir)) {
@@ -69,7 +83,9 @@ async function getMigrationsDir() {
  * https://github.com/rickbergfalk/postgrator#usage
  */
 function getMigrationFilename(version, action = "do", description = "") {
-  return `${version}.${action}.${description?.length ? `${description}.` : ""}sql`;
+  return `${version}.${action}.${
+    description?.length ? `${description}.` : ""
+  }sql`;
 }
 
 /**
