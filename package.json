@@ -24,15 +24,15 @@
     "index.mjs"
   ],
   "dependencies": {
-    "@platformatic/db": "^0.12.1",
-    "chalk": "^5.1.2",
-    "execa": "^6.1.0",
+    "@platformatic/db": "^0.15.1",
+    "chalk": "^5.2.0",
+    "execa": "^7.0.0",
     "yargs-parser": "^21.1.1"
   },
   "peerDependencies": {
     "prisma": ">=3.0.0"
   },
   "devDependencies": {
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.4"
   }
 }
