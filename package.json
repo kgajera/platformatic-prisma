@@ -24,7 +24,8 @@
     "index.mjs"
   ],
   "dependencies": {
-    "@platformatic/db": "^0.15.1",
+    "@platformatic/db": "^0.28.1",
+    "@platformatic/service": "^0.28.1",
     "chalk": "^5.2.0",
     "execa": "^7.0.0",
     "yargs-parser": "^21.1.1"

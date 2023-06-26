@@ -2,15 +2,18 @@
   "name": "platformatic-prisma-example",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "platformatic db start",
     "migrate": "platformatic-prisma"
   },
   "dependencies": {
-    "platformatic": "^0.15.1"
+    "platformatic": "^0.28.1"
   },
   "devDependencies": {
     "platformatic-prisma": "file:..",
-    "prisma": "^4.10.1"
+    "prisma": "^4.16.1"
   }
 }
