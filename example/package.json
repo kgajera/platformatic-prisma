@@ -10,7 +10,7 @@
     "migrate": "platformatic-prisma"
   },
   "dependencies": {
-    "platformatic": "^0.28.1"
+    "platformatic": "^1.19.0"
   },
   "devDependencies": {
     "platformatic-prisma": "file:..",

@@ -1,6 +1,6 @@
 {
   "name": "platformatic-prisma",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Generate migrations for your Platformatic DB using a Prisma schema",
   "bin": "index.mjs",
   "scripts": {},
@@ -24,16 +24,16 @@
     "index.mjs"
   ],
   "dependencies": {
-    "@platformatic/db": "^0.28.1",
-    "@platformatic/service": "^0.28.1",
-    "chalk": "^5.2.0",
-    "execa": "^7.0.0",
+    "@platformatic/config": "^1.19.0",
+    "@platformatic/db": "^1.19.0",
+    "chalk": "^5.3.0",
+    "execa": "^8.0.1",
     "yargs-parser": "^21.1.1"
   },
   "peerDependencies": {
     "prisma": ">=3.0.0"
   },
   "devDependencies": {
-    "prettier": "^2.8.4"
+    "prettier": "^3.2.4"
   }
 }

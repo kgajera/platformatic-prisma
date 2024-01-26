@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+import { loadConfig } from "@platformatic/config";
 import { platformaticDB } from "@platformatic/db";
 import { Migrator } from "@platformatic/db/lib/migrator.mjs";
-import { loadConfig } from "@platformatic/service";
 import chalk from "chalk";
 import { execaCommand } from "execa";
 import fs from "fs";
